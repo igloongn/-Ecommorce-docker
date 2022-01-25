@@ -1,0 +1,71 @@
+# version: '3.4'
+
+# services:
+#   ecom_cont:
+#     image: ecommerceproject
+#     build:
+#       context: .
+#       dockerfile: ./dockerfile
+#     env_file:
+#       - .env
+#     ports:
+#       - 1234:1234
+#     volumes:
+#       - ./code/:/usr/src/app/
+#     depends_on:
+#       - db
+#     networks:
+#       - heritage-network
+#   db:
+#     image: postgres:13.3
+#     container_name: db
+#     restart: always
+#     networks:
+#       - heritage-network
+#     environment:
+#       POSTGRES_DATABASE: admin
+#       POSTGRES_USER: root
+#       POSTGRES_PASSWORD: root
+#       POSTGRES_ROOT_PASSWORD: root
+#     volumes:
+#       - .dbdata:/var/lib/postgres
+#     ports:
+#       - "32768:5432"
+#       - "1234:1234"
+
+
+# networks:
+#   heritage-network:
+#     driver: bridge
+
+
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - 1234:1234
+    image: ecom_image
+    container_name: ecomm_container
+    command: python manage.py runserver 0.0.0.0:1234
+    # command: gunicorn --bind 0.0.0.0:1234 zcart.wsgi
+    depends_on:
+      - db
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    env_file:
+      - database.env
+    # environment:
+    #   - POSTGRES_DB=postgres
+    #   - POSTGRES_USER=postgres
+    #   - POSTGRES_PASSWORD=postgres
+    container_name: postgre_db_container
+  
+
+networks:
+  docker-network:
+  

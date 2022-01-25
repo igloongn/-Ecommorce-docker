@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+
+  .wrapper {
+    min-height: 100%;
+      /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+    width: 100%;
+  } 
+  .footer,
+  .push {
+    height: 50px;
+  }
+/* This is to Hide Radio Button */
+.rate >input{
+  display: none;
+}
+.rate{
+  display: inline-block;
+  border: 0;
+}
+
+.rate >label{
+  float: right;
+}
+
+/* This is for showing the stars */
+.rate > label:before{
+  display: inline-block;
+  font-size: 1.1rem;
+  font-family: FontAwesome;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  content: "\f005";
+  margin: 0;
+  padding: 0.3rem .2rem;
+  cursor: pointer;
+}
+/* This is for half Star */
+.rate .half:before{
+  content: "\f089";
+  position: absolute;
+  padding-right: 0;
+}
+/* Hover and click function */
+input:checked ~ label, label:hover ~ label{
+  color: #ffb503;
+}
+
+/* Hover Highlight */
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label, label:hover ~ input:checked ~ label{
+  color: #cc9000;
+}
+/* This is for the color of the stars */
+.rating-star i{
+  color: #ffb503 !important;
+}
+/* This is for horizontal scroll */
+div.scroll {
+  margin: 4px, 4px;
+  padding: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+ul.thumb{
+  margin:0 auto;
+  padding: 0;
+  float: left;
+}
+ul.thumb li{
+  list-style: none;
+  margin: 10px;
+}
+ul.thumb li img{
+  width: 80px;
+  height: 80px;
+  border: 1px solid grey;
+}
